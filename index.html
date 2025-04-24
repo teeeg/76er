@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Happy Birthday!</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fdf6e3;
+        font-family: sans-serif;
+        overflow: hidden;
+      }
+      #start-btn {
+        position: absolute;
+        padding: 1rem 2rem;
+        font-size: 4rem;
+        cursor: pointer;
+        border: none;
+        background: #ff6f61;
+        color: white;
+        border-radius: 8px;
+        transition: opacity 0.5s ease;
+      }
+      #profile {
+        width: 500px;
+        margin: 20px 0;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+      #container {
+        text-align: center;
+        opacity: 0;
+      }
+      h1 {
+        font-size: 4rem;
+        user-select: none;
+        color: #ff6f61;
+      }
+      .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      #blurb {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        max-width: 600px;
+        line-height: 1.4;
+        user-select: none;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start-btn">Click to Celebrate!</button>
+    <img id="profile" src="body.png" alt="Me" />
+    <div id="container">
+      <h1 id="greeting">HAPPY BIRTHDAY</h1>
+      <p id="blurb">
+        DAD! sorry I’m so far away, really missing you guys, happy 76! thanks
+        for taking such great care of your health and bringing laughter and a
+        perspective to life, I love you and hope you have a lovely day. ❤️
+      </p>
+    </div>
+    <script>
+      const btn = document.getElementById("start-btn");
+      const profile = document.getElementById("profile");
+      const container = document.getElementById("container");
+      const greeting = document.getElementById("greeting");
+      const blurb = document.getElementById("blurb");
+
+      // wrap each character in a span
+      greeting.innerHTML = [...greeting.textContent]
+        .map(ch => `<span class="letter">${ch}</span>`)
+        .join("");
+
+      btn.addEventListener("click", () => {
+        // hide button
+        btn.style.opacity = 0;
+        setTimeout(() => btn.style.display = "none", 500);
+
+        // swap profile image
+        profile.style.opacity = 0;
+        setTimeout(() => {
+          profile.src = "cake.png";
+          profile.style.opacity = 1;
+        }, 500);
+
+        // show container
+        container.style.opacity = 1;
+
+        // stagger letters
+        const letters = document.querySelectorAll(".letter");
+        letters.forEach((l, i) => {
+          setTimeout(() => {
+            l.style.animation = "fadeInUp 0.5s ease forwards";
+          }, 300 + i * 100);
+        });
+
+        // show blurb after letters
+        setTimeout(() => {
+          blurb.style.animation = "fadeInUp 0.6s ease forwards";
+        }, 300 + letters.length * 100 + 200);
+      });
+    </script>
+  </body>
+</html>
