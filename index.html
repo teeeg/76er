@@ -47,7 +47,7 @@
         transform: translateY(20px);
       }
       #blurb {
-        font-size: 1.5rem;
+        font-size: 1rem;
         margin-top: 1rem;
         max-width: 600px;
         line-height: 1.4;
@@ -74,9 +74,12 @@
     <div id="container">
       <h1 id="greeting">HAPPY BIRTHDAY</h1>
       <p id="blurb">
-        DAD! sorry I’m so far away, really missing you guys, happy 76! thanks
-        for taking such great care of your health and bringing laughter and a
-        perspective to life, I love you and hope you have a lovely day. ❤️
+        DAD! Happy 76! I'm really missing you guys—especially today. You're a
+        great dad who I admire and genuinely love spending time with. It's hard
+        being so far away and not being able to just pop over, but I'll be home
+        in August! Thanks for taking such great care of your health, always
+        bringing laughter, and offering such a wonderful perspective on life. I
+        love you and hope you have a lovely day. ❤️
       </p>
     </div>
     <script>
@@ -88,13 +91,13 @@
 
       // wrap each character in a span
       greeting.innerHTML = [...greeting.textContent]
-        .map(ch => `<span class="letter">${ch}</span>`)
+        .map((ch) => `<span class="letter">${ch}</span>`)
         .join("");
 
       btn.addEventListener("click", () => {
         // hide button
         btn.style.opacity = 0;
-        setTimeout(() => btn.style.display = "none", 500);
+        setTimeout(() => (btn.style.display = "none"), 500);
 
         // swap profile image
         profile.style.opacity = 0;
